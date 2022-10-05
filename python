@@ -1,0 +1,15 @@
+#[near_bindgen]
+#[derive(BorshDeserialize, BorshSerialize, Default)]
+pub struct MyContractStructure {
+    integer: u64,
+    message: String,
+}
+#[near_bindgen]
+impl MyContractStructure {
+    pub fn get_values(self) -> (u64, String) {
+        (self.integer, self.message)
+    }
+    pub fn log_state_string(&self) {
+        near_sdk::env::log(self.message.as_bytes());
+    }
+}
